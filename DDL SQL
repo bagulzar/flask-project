@@ -1,0 +1,128 @@
+CREATE TABLE Mitglied (
+ Mitglieds_id INT PRIMARY KEY,
+ Vorname VARCHAR(10),
+ Nachname VARCHAR(10),
+ Stelle VARCHAR(6),
+ Abteilung VARCHAR(3)
+);
+
+CREATE TABLE Komitee (
+ Name VARCHAR(10) PRIMARY KEY,
+ Mitgliederzahl INT
+);
+
+
+CREATE TABLE ExchangeProgramm (
+ ExchangeTyp VARCHAR(3) PRIMARY KEY,
+ Preis INT, 
+ Dauer INT
+);
+
+CREATE TABLE Kunde (
+ Kunden_ID INT PRIMARY KEY, 
+ Vorname VARCHAR(10),
+ Nachname VARCHAR(10),
+ Email VARCHAR(30),
+ Telefonnummer VARCHAR(13)
+);
+
+CREATE TABLE Exchange (
+ Exchange_ID INT,
+ ExchangeType VARCHAR(3),
+ Kunden_ID INT,
+ Mitglieds_ID INT, 
+ To_City VARCHAR(15),
+ To_Country VARCHAR(15),
+ Departure_Date DATE, 
+ Return_Date DATE,
+ PRIMARY KEY(Exchange_ID),
+ FOREIGN KEY(ExchangeType) REFERENCES ExchangeProgramm(ExchangeTyp) ON DELETE SET NULL,
+ FOREIGN KEY(Kunden_ID) REFERENCES Kunde(Kunden_ID) ON DELETE SET NULL,
+ FOREIGN KEY(Mitglieds_ID) REFERENCES Mitglied(Mitglieds_ID) ON DELETE SET NULL
+);
+
+INSERT INTO Komitee VALUES('BerlinTU',23);
+
+INSERT INTO Mitglied (Mitglieds_id,Vorname,Nachname,Stelle,Abteilung) VALUES
+	(91, 'Natascha', 'Wandt', 'Member', 'oGE'),
+    (90, 'Charlotte',	'Doesburg',	'Member', 'oGE'),
+	(88, 'Lucie', 'Caillat', 'LCVP', 'oGV'),
+    (87, 'Pranav', 'Jangam', 'Member', 'oGV'),
+    (86, 'Sarah', 'Lauby', 'Member', 'TM'),
+    (75, 'Isra', 'Boussaid', 'Member', 'oGV'),
+    (73, 'Maximilian', 'Abt', 'Member', 'oGT'),
+    (72, 'Christine', 'Doesburg', 'Member', 'Fin'),
+    (70, 'Azhar', 'Allaya', 'Member', 'Fin'),
+    (68, 'Prince', 'Chughtai', 'Member', 'oGE'),
+    (66, 'Mouad', 'Gharnati', 'Member', 'oGV'),
+    (65, 'Melanie', 'Nguyen', 'Member', 'oGE'),
+    (64, 'Ngan', 'Pham', 'Member', 'oGE'),
+    (63, 'Maher', 'Salah', 'Member', 'oGE'),
+    (62, 'Christina', 'Jing', 'Member', 'oGT'),
+    (59, 'Richard', 'Stahn', 'LCVP', 'Fin'),
+    (53, 'Manu', 'Prasad', 'Member', 'oGT'),
+    (51, 'Ali', 'Soulimane', 'Member', 'oGT'),
+    (45, 'Laura', 'Kristen',  'LCP', 'EB'),
+    (17, 'Luise', 'Wittich', 'LCVP', 'oGE'),
+    (14, 'Sophie', 'Hase', 'LCVP', 'TM'),
+    (12, 'Abudi', 'Massri', 'Member', 'oGV'),
+    (33, 'Regina', 'Szatkowska', 'LCVP', 'oGT');
+    
+INSERT INTO Kunde (Kunden_ID,Vorname,Nachname,Email,Telefonnummer) VALUES
+(42, 'Tommy', 'Ngo', 'chi.than@aiesec.net', '01733145569'),
+(32, 'Lukas', 'Wilke', 'lukas.wilke@aiesec.net', '017629437382'),
+(37, 'Bastian', 'Weck', 'bastian.weck@aiesec.net', '017631502053'),
+(30, 'Tom', 'Pippel', 'tom.pippel@aiesec.net', '01713454032'),
+(39, 'Anna', 'Pilishenko', 'anna.pilishenko@aiesec.net', '01754939629'),
+(27, 'Leon', 'Viets', 'leon.viets@aiesec.net', '017621762750'),
+(36, 'Theresa', 'Nilkes', 'theresa.nikes@aiesec.net' , '01631959429'),
+(17, 'Clara', 'Carl', 'clara.carl@aiesec.net', '01638724124'),
+(20, 'August', 'Gutsche', 'august.gutsche@aiesec.net', '01628581976'),
+(24, 'Faizan', 'Farooq', 'faiyan.farooq@aiesec.net', '015733223554'),
+(22, 'Hüseyin', 'Onurcan', 'hüseyin.onurcan@aiesec.net', '01705978658'),
+(18, 'Hemeng', 'Wang', 'hemeng.wang@aiesec.net', '017620281300'),
+(26, 'Malik', 'Arif', 'malik.arif@aiesec.net', '01799233946'),
+(23, 'Arsal', 'Jalib', 'arsal.jalib@aiesec.net', '017660872618'),
+(13, 'Asra', 'Avisena', 'asra.avisena@aiesec.net', '017644261012'),
+(14, 'Oliver', 'Rudolph', 'oliver.rudolph@aiesec.net', '017668463689'),
+(21, 'David', 'Scholz', 'david.scholz@aiesec.net', '01712133468'),
+(16, 'Syedah', 'Khatoon', 'syedah.khatoon@aiesec.net', '017667574275'),
+(19, 'Xinyue', 'Han', 'xinyue.hun@aiesec.net', '017643662087'),
+(12, 'Nhu', 'Nguyen', 'nhu.nguyen@aiesec.net', '01782049469'),
+(8, 'Francesca', 'Schmidt', 'francesca.schmidt@aiesec.net', '017620468106'),
+(11, 'Rica', 'Neumann', 'rica.neumann@aiesec.net', '017632310105'),
+(9, 'Viviana', 'Kitschke', 'viviana.kitschke@aiesec.net', '01783059140'),
+(6, 'Shruti', 'Vasudev', 'shruti.vasudev@aiesec.net', '015906186385'),
+(7,	'Maximilian', 'Hein', 'maximilian.hein@aiese.net', '017642915735');
+
+INSERT INTO ExchangeProgramm (ExchangeTyp, Preis, Dauer) VALUES
+ ('oGV', 390, 6),
+ ('oGE', 400, 14),
+ ('oGT', 450, 27);
+ 
+ INSERT INTO Exchange (Exchange_ID, ExchangeType, Kunden_ID, Mitglieds_ID, To_City, To_Country, Departure_Date, Return_Date) VALUES
+ (5988891,	'oGV',	42,	87,	'VIENNA', 'Austria', '2019-11-21', '2020-02-17'),
+ (5763037,	'oGV',	32,	87,	'UGM', 'Indonesia',	'2019-12-13', '2020-02-09'),
+ (5803453,	'oGV',	37,	75,	'UB', 'Indonesia', '2019-11-24', '2020-03-01'),
+ (5768561,	'oGV',	30,	66,	'Tabasco', 'Mexico', '2020-01-28', '2020-03-09'),
+ (5859322,	'oGV',	39,	12,	'Tabasco',	'Mexico', '2019-07-30',	'2020-03-12'),
+ (5566750,	'oGE',	27,	91,	'ATLANTA',	'USA', '2019-12-19', '2020-03-23'),
+ (5811675,	'oGE',	36,	63,	'Leon',	'Mexico', '2019-06-01',	'2019-09-04'),
+ (5426008,	'oGE',	17,	64,	'SALVADOR',	'Brazil', '2018-11-16',	'2019-02-23'),
+ (4833334,	'oGE',	20,	65,	'Santiago',	'Chile', '2019-06-30', '2019-10-03'),
+ (5510826,	'oGE',	24,	91,	'Ainshams', 'Egypt', '2019-05-15', '2019-08-18'),
+ (5368775,	'oGE',	22,	65,	'Ainshams', 'Egypt', '2019-06-25', '2019-09-28'),
+ (5500768,	'oGE',	18,	64,	'Ainshams', 'Egypt', '2019-07-18', '2019-10-21'),
+ (5544547,	'oGE',	26,	63,	'ANTALYA',	'Turkey', '2019-05-17',	'2019-08-19'),
+ (5380140,	'oGE',	23,	68,	'Bandung',	'Indonesia', '2019-12-15', '2020-03-11'),
+ (4876066,	'oGE',	13,	65,	'Subang', 'Malaysia', '2019-10-10',	'2020-01-13'),
+ (4683486,	'oGE',	14,	63,	'Cairo', 'Egypt', '2019-01-14',	'2019-04-22'),
+ (4966360,	'oGE',	21,	65,	'ISTANBUL',	'Turkey', '2019-10-25',	'2020-01-28'),
+ (4742086,	'oGE',	16,	91,	'Mansoura',	'Egypt', '2019-11-20', '2020-02-18'),
+ (4815780,	'oGE',	19,	91,	'Mansoura',	'Egypt', '2019-06-13', '2019-09-19'),
+ (4378520,	'oGE',	12,	68,	'Mansoura',	'Egypt', '2019-02-19', '2019-05-25'),
+ (3893928,	'oGE',	8,	64,	'SANTAMARIA', 'Brazil',	'2019-06-15', '2019-09-16'),
+ (4373360,	'oGT',	11,	62,	'VIENNA', 'Austria', '2019-03-01', '2019-09-07'),
+ (3927260,	'oGT',	9,	73,	'ZAGREB', 'Croatia', '2019-12-03', '2020-06-29'),
+ (3744285,	'oGT',	6,	62,	'BOSTON', 'USA', '2019-01-11', '2019-07-20'),
+ (3789291,	'oGT',	7,	73,	'IPN', 'Mexico', '2019-10-14', '2020-04-21');
